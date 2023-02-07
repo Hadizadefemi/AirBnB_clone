@@ -1,5 +1,5 @@
 # Airbnb clone
-This project is a task from ALX Schools which goal is to deploy on our server a simple copy of the AirBnB website.
+This project is a task from ALX Schools which goal is to deploy on our server a simple copy of the [AirBnB website](www.airbnb.com).
 <br>
 
 ## Project Description
