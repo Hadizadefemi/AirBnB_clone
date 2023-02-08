@@ -10,16 +10,26 @@ class BaseModel:
     """defines all common attributes/methods for other classes
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """ inits with id, time created and updated time"""
 
-        self.id = str(uuid.uuid4())
-        created_time = datetime.now()
-        self.created_at = created_time
-        self.updated_at = datetime.now()
+        if len(kwargs) > 0:
+            f = "%Y-%m-%dT%H:%M:%S.%f"
+            for key, value in kwargs.items():
+                if key == 'created_at' or key == 'updated_at':
+                    value = datetime.strptime(kwargs[key], f)
+                if key != '__class__':
+                    setattr(self, key, value)
+
+
+        else:
+            self.id = str(uuid.uuid4())
+            created_time = datetime.now()
+            self.created_at = created_time
+            self.updated_at = datetime.now()
 
     def __str__(self):
-        """ returns a string rep when class is printed"""
+        """ returns a string rep when instance of class is printed"""
 
         class_name = type(self).__name__
         instance_id = self.id
