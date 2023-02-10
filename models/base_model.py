@@ -4,6 +4,7 @@ defines class BaseModel
 """
 import uuid
 from datetime import datetime
+from models import storage
 
 
 class BaseModel:
@@ -21,12 +22,12 @@ class BaseModel:
                 if key != '__class__':
                     setattr(self, key, value)
 
-
         else:
             self.id = str(uuid.uuid4())
             created_time = datetime.now()
             self.created_at = created_time
             self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """ returns a string rep when instance of class is printed"""
@@ -42,6 +43,7 @@ class BaseModel:
         """
 
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """ returns a dictionary containing all keys/values of __dict__
