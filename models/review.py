@@ -2,7 +2,7 @@
 """Module review
 defines a class, Review which inherits from BaseModel
 """
-from models.base_models import BaseModel
+from models.base_model import BaseModel
 
 
 class Review(BaseModel):
